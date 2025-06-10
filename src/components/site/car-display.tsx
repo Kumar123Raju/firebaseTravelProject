@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ServerCrash } from "lucide-react";
+import { dummyCars } from "@/lib/dummy-cars"; // 👈 Add this
+
 
 const CARS_PER_PAGE = 8;
 
@@ -22,11 +24,19 @@ const CarDisplay = () => {
     try {
       // In a real app, you'd pass pagination params like ?page=${pageNum}&limit=${CARS_PER_PAGE}
       // For now, we simulate pagination if the API doesn't support it directly.
-      const response = await fetch(`http://localhost:8081/getCarList`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const allCars: Car[] = await response.json();
+      // const response = await fetch(`http://localhost:8081/getCarList`);
+    const response: { ok: boolean; json: () => Promise<Car[]> } = {
+                    ok: true,
+                 json: async () => dummyCars, // dummyCars must be imported
+        };
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
+      let allCars: Car[] = await response.json();
+
+
+      // ✅ Fallback to dummy data if API returns empty or fails silently
+       allCars = allCars.length ? allCars : dummyCars;
       
       // Simulate pagination client-side if API doesn't support it
       const newCars = allCars.slice((pageNum - 1) * CARS_PER_PAGE, pageNum * CARS_PER_PAGE);

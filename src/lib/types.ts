@@ -1,6 +1,6 @@
 export interface CounterData {
   totalBookings: number;
-  todaysBookings: number;
+  todayBookings: number;
 }
 
 export interface Car {
@@ -23,3 +23,8 @@ export interface BookingFormData {
   bookingDate: Date;
   numPeople: number;
 }
+
+
+
+
+
