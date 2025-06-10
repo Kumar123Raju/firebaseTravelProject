@@ -62,7 +62,7 @@ const Footer = () => {
              <div className="bg-slate-700 rounded-md p-2 h-32 flex items-center justify-center">
                 {/* Placeholder for map embed */}
                 <p className="text-sm text-slate-400">Map Area (Google Maps Embed)</p>
-                <Image src="https://maps.googleapis.com/maps/api/staticmap?center=Hazaribagh,Jharkhand&zoom=14&size=600x300&maptype=roadmap&markers=color:red%7CHazaribagh,Jharkhand&key=YOUR_API_KEY" alt="Map placeholder" width={300} height={150} className="rounded opacity-50" data-ai-hint="map city" />
+                <Image src="https://placehold.co/300x150.png" alt="Map placeholder" width={300} height={150} className="rounded opacity-50" data-ai-hint="map city" />
              </div>
           </div>
 
